@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
-
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+const MY_PASSWORD = process.env.MY_PASSWORD;
 const sendEmail = async (email, createOtp, userName) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -7,14 +8,14 @@ const sendEmail = async (email, createOtp, userName) => {
     port: 587,
     secure: false, // Use `true` for port 465, `false` for other ports
     auth: {
-      user: "foodlanddb@gmail.com",
-      pass: "zdfy yfkl iskb nyjg",
+      user: ADMIN_EMAIL,
+      pass: MY_PASSWORD,
     },
   });
   const mailOptions = {
     from: {
       name: "Treat Tracker",
-      address: "foodlanddb@gmail.com"
+      address: ADMIN_EMAIL
     },
     to: email,
     subject: "Treat Tracker Password Reset",

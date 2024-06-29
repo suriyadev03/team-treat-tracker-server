@@ -7,6 +7,9 @@ const signupSchema = require("./models/signupModel");
 const { sendEmail } = require('./emailService');
 mongoose.set('strictQuery', false);
 
+const MONGODB_URL = process.env.MONGODB_URL;
+const PORT = process.env.PORT;
+
 const app = express();
 
 
@@ -139,13 +142,13 @@ app.post("/updatepassword", async (req, res) => {
 // }
 
 // updateUsers();
-mongoose.connect("mongodb+srv://suriyadev2:treat_track@tracktreat.dh6dz10.mongodb.net/tracktreat")
+mongoose.connect(MONGODB_URL)
     .then(() => {
         console.log("MongoDB Connected");
     }).catch((err) => {
         console.log(err)
     })
 
-app.listen(5000, () => {
-    console.log(`Server is running on 5000`);
+app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`);
 });
